@@ -15,3 +15,5 @@ muokata kommenttejaan, tykätä muiden kommenteista etc. Käyttäjä voi myös h
 
 Tietokantakaavion löytää [täältä](docs/ERD_diagram.png)
 Käyttötapauksia löytyy [täältä](docs/user_stories.md)
+
+### Sovellus löytyy [Herokusta](https://minimalforum.herokuapp.com/)
