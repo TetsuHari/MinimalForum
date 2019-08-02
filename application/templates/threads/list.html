@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Thread title</th>
+      <th>Created on</th>
+      <th>Locked thread</th>
+    </tr>
+    {% for thread in threads %}
+    <tr>
+      <td>{{ thread.title }}</td>
+      <td>{{ thread.date_created }}</td>
+      <td>{{ thread.locked }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('lock_thread', thread_id=thread.id) }}">
+          <input type="submit" value="Lock thread"/>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
