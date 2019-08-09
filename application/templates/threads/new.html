@@ -2,23 +2,33 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('create_thread') }}">
-  <table>
-    <tr>
-      <td>
-        {{ form.title.label }}
-      <td>
-        {{ form.title }}
-      <td>
-        <ul>
-          {% for error in form.title.errors %}
-          <li> {{ error }}
-          {% endfor %}
-    <tr>
-      <td>
-        {{ form.content.label }}
-      <td>
-        {{ form.content }}
-    <tr>
-      <td colspan="2">
-        <input type="submit" value="Create new thread"/>
+    <table>
+      <tr>
+        <td>
+          <div class="nes-field is-inline">
+            <label> {{ form.title.label }} </label>
+            {{ form.title(class_="nes-input") }}
+          </div>
+        </td>
+        <td>
+          <ul>
+            {% for error in form.title.errors %}
+            <li> {{ error }} </li>
+            {% endfor %}
+          </ul>
+        </td>
+      <tr>
+        <td>
+          <div class="nes-field is-inline">
+            <label> {{ form.content.label }} </label>
+            {{ form.content(class_="nes-input") }}
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input class="nes-btn" type="submit" value="Create new thread"/>
+        </td>
+      </tr>
+    </table>
 {% endblock %}

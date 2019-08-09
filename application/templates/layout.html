@@ -2,18 +2,23 @@
 <html>
   <head>
     <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
     <title>MinimalForum</title>
   </head>
 
   <body>
-    <ul>
-      <li><a href="{{ url_for('threads_index') }}">List threads</a></li>
-      <li><a href="{{ url_for('new_thread_form') }}">Create a new thread</a></li>
-    </ul>
-    {% block body %}
-      <p>
-        Content.
-      </p>
-    {% endblock %}
+
+    <div class="nes-container is-rounded">
+      <nav>
+        <a class="nes-btn" href="{{ url_for('threads_index') }}">List threads</a>
+        <a class="nes-btn" href="{{ url_for('new_thread_form') }}">Create a new thread</a>
+      </nav>
+    </div>
+
+    <div class="nes-container is-dark">
+      {% block body %}
+      {% endblock %}
+    </div>
   </body>
 </html>
