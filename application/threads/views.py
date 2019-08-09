@@ -1,10 +1,11 @@
 from application import app, database
 from flask import render_template, request, url_for, redirect
 from application.threads.models import Thread
+from application.threads.forms import ThreadForm
 
 @app.route("/threads/new")
 def new_thread_form():
-    return render_template("threads/new.html")
+    return render_template("threads/new.html", form = ThreadForm())
 
 @app.route("/threads/", methods=["GET"])
 def threads_index():
@@ -12,8 +13,12 @@ def threads_index():
 
 @app.route("/threads/", methods=["POST"])
 def create_thread():
-    print(request.form.get("title"))
-    thread = Thread(request.form.get("title"))
+    form = ThreadForm(request.form)
+
+    if not form.validate():
+        return render_template("threads/new.html", form = form)
+
+    thread = Thread(form.title.data, form.content.data)
     database.session().add(thread)
     database.session().commit()
 

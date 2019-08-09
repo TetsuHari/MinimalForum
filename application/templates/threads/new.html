@@ -2,7 +2,23 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('create_thread') }}">
-  <input type="text" name="title"/>
-  <input type="submit" value="Create new thread"/>
-</form>
+  <table>
+    <tr>
+      <td>
+        {{ form.title.label }}
+      <td>
+        {{ form.title }}
+      <td>
+        <ul>
+          {% for error in form.title.errors %}
+          <li> {{ error }}
+          {% endfor %}
+    <tr>
+      <td>
+        {{ form.content.label }}
+      <td>
+        {{ form.content }}
+    <tr>
+      <td colspan="2">
+        <input type="submit" value="Create new thread"/>
 {% endblock %}
