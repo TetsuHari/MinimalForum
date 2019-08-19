@@ -17,3 +17,9 @@ Tietokantakaavion löytää [täältä](docs/ERD_diagram.png)
 Käyttötapauksia löytyy [täältä](docs/user_stories.md)
 
 ### Sovellus löytyy [Herokusta](https://minimalforum.herokuapp.com/)
+
+Sovellukseen on tehty yksi käyttäjä:
+Username: Hello
+Salasana: worldworldworld
+
+Voi myös rekisteröidä uuden käyttäjän menemällä /register pathiin, mihin ei vain vielä ole linkkiä sivuilla.
