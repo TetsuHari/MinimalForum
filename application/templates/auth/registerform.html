@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('auth_register') }}">
+  <table>
+    <tr>
+      <td>
+          {% if form.username.errors|length > 0 %}
+          <div class="nes-balloon from-left">
+            {% for error in form.username.errors %}
+            <span class="nes-text is-error"> {{ error }} </span>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <div class="nes-field is-inline">
+            <label> {{ form.username.label }} </label>
+            {{ form.username(class_="nes-input") }}
+          </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {% if form.password.errors|length > 0 %}
+          <div class="nes-balloon from-left">
+            {% for error in form.password.errors %}
+            <span class="nes-text is-error"> {{ error }} </span>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <div class="nes-field is-inline">
+            <label> {{ form.password.label }} </label>
+            {{ form.password(class_="nes-input") }}
+          </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {% if form.password_confirm.errors|length > 0 %}
+          <div class="nes-balloon from-left">
+            {% for error in form.password_confirm.errors %}
+            <span class="nes-text is-error"> {{ error }} </span>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <div class="nes-field is-inline">
+            <label> {{ form.password_confirm.label }} </label>
+            {{ form.password_confirm(class_="nes-input") }}
+          </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+	       <input class="nes-btn" type="submit" value="Register"/>
+      </td>
+    </tr>
+</form>
+{% endblock %}

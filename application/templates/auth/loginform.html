@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ error }}
+<form method="POST" action="{{ url_for('auth_login') }}">
+  <table>
+    <tr>
+      <td>
+          <div class="nes-field is-inline">
+            <label> {{ form.username.label }} </label>
+            {{ form.username(class_="nes-input") }}
+          </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+          <div class="nes-field is-inline">
+            <label> {{ form.password.label }} </label>
+            {{ form.password(class_="nes-input") }}
+          </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+	       <input class="nes-btn" type="submit" value="Login"/>
+      </td>
+    </tr>
+</form>
+{% endblock %}

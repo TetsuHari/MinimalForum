@@ -1,15 +1,17 @@
-from application import database
+from application import db
 
-class Thread(database.Model):
-    id = database.Column(database.Integer, primary_key=True)
-    date_created = database.Column(database.DateTime, default=database.func.current_timestamp())
-    title = database.Column(database.String(144), nullable=False)
-    locked = database.Column(database.Boolean, nullable=False, default=False)
-    content = database.Column(database.String(144))
-    # TODO:
-    # content = database.Column( reference to starting comment )
-    # modified_on = database.Column(database.DateTime ...)
+class Thread(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
+    title = db.Column(db.String(144), nullable=False)
+    locked = db.Column(db.Boolean, default=False, nullable=False)
+    content = db.Column(db.String(144), nullable = False)
 
-    def __init__(self, title, content):
+    author_id = db.Column(db.Integer, db.ForeignKey('account.id'),
+        nullable = False)
+    author = db.relationship("User", backref="threads_created")
+
+    def __init__(self, title, content, auth_id):
         self.title = title
         self.content = content
+        self.author_id = auth_id

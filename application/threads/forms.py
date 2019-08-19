@@ -7,7 +7,8 @@ class ThreadForm(FlaskForm):
                          , message="The title must be at least three characters!")
                     ]
     title = StringField("Thread title", _title_validators)
-    content = StringField("Content") # TODO this needs to be comment form
+    content = StringField("Content",
+        [ validators.Length(min=1, message="Content must be non-empty")])
 
     class Meta:
         csrf = False
