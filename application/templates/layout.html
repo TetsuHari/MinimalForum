@@ -14,7 +14,7 @@
         <a class="nes-btn" href="{{ url_for('threads_index') }}">List threads</a>
         <a class="nes-btn" href="{{ url_for('new_thread_form') }}">Create a new thread</a>
         {% if current_user.is_authenticated %}
-        <a class="nes-btn"> {{ current_user.username }} </a>
+        <a class="nes-btn" href="{{ url_for('auth_userpage', uname = current_user.username) }}"> {{ current_user.username }} </a>
         <a class="nes-btn" href="{{ url_for('auth_logout') }}">Logout</a>
         {% else %}
         <a class="nes-btn" href="{{ url_for('auth_login') }}">Login</a>
