@@ -1,0 +1,7 @@
+[x] Change db.String(144) to db.Text
+[x] Add maximum length validation to forms
+[x] Check that all other validation is good
+[x] Add user page
+[x] Add crud to user
+[ ] Add thread page
+[ ] Add crud to thread

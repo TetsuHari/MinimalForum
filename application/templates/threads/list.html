@@ -2,28 +2,22 @@
 
 {% block body %}
 <div class="nes-table-responsive">
-  <table class="nes-table is-dark is-bordered">
-    <thead>
-      <tr>
-        <th>Thread title</th>
-        <th>Created on</th>
-        <th>Locked thread</th>
-      </tr>
-    </thead>
-    <tbody>
+  <table class="nes-table is-dark">
       {% for thread in threads %}
       <tr>
-        <td>{{ thread.title }}</td>
-        <td>{{ thread.date_created }}</td>
-        <td>{{ thread.locked }}</td>
         <td>
-          <form method="POST" action="{{ url_for('lock_thread', thread_id=thread.id) }}">
-            <input class="nes-btn is-warning" type="submit" value="Lock thread"/>
-          </form>
+          <a class="nes-text" href="{{ url_for('thread', thread_id=thread.id) }}">
+            {{ thread.title }}
+          </a>
+        </td>
+        <td>
+          <span class="nes-text is-primary">
+            By {{ thread.author.username }}
+          </span>
+
         </td>
       </tr>
       {% endfor %}
-    </tbody>
   </table>
 </div>
 {% endblock %}

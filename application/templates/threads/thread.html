@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="nes-container with-title is-dark">
+  <p class="title">{{ thread.title }}</p>
+  {{ content|safe }}
+</div>
+{% endblock %}

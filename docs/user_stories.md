@@ -1,8 +1,11 @@
 ## User stories
 
-* Käyttäjänä haluan rekisteröidä itselleni tilin
-* Käyttäjäna haluan kirjautua tililleni
-* Käyttäjänä haluan luoda palstoja
+[x] Käyttäjänä haluan rekisteröidä itselleni tilin
+[x] Käyttäjäna haluan kirjautua tililleni
+[x] Käyttäjänä haluan luoda palstoja
+[ ] Käyttäjäna haluan poistaa luomiani palstoja
+[ ] Käyttäjänä haluan lukita/avata luomiani palstoja
+[ ] Käyttäjänä haluan muokata luomiani palstoja
 * Käyttäjänä haluan kommentoida palstoihin
 * Käyttäjänä haluan kommentoida palstojen kommenteihin
 * Käyttäjänä haluan muokata itse laatimiani kommentteja
