@@ -6,6 +6,7 @@ from application import app, db
 from application.threads.models import Thread
 from application.threads.forms import ThreadForm
 from application.comment.models import Comment
+from application.comment.forms import CommentForm
 
 
 @app.route("/threads/new")
@@ -37,15 +38,55 @@ def create_thread():
 @login_required
 def lock_thread(thread_id):
     thread = Thread.query.get(thread_id)
-    thread.locked = True
+    thread.locked = not thread.locked
     db.session.commit()
 
-    return redirect(url_for("threads_index"))
+    return redirect(url_for("thread", thread_id=thread_id))
 
 
 @app.route("/threads/<thread_id>/", methods=["GET"])
-def thread(thread_id):
+def thread(thread_id, comment_form=None):
     thread = Thread.query.get(thread_id)
+    if comment_form is None:
+        comment_form = CommentForm()
+    if thread:
+        is_owner = False
+        if hasattr(current_user, 'id'):
+            is_owner = current_user.id == thread.author.id
+        thread_comms = thread.thread_comments
+        comment_html = map(render_comment, thread_comms)
+        return render_template("threads/thread.html", thread=thread,
+                               content=mistune.markdown(thread.content),
+                               comments=comment_html,
+                               form=comment_form,
+                               owner=is_owner)
 
-    return render_template("threads/thread.html", thread=thread,
-        content=mistune.markdown(thread.content))
+    return render_template("threads/not_found.html")
+
+# render_comment :: Comment -> HTML
+
+
+def render_comment(comment):
+    comments = comment.comments
+    comments_html = map(render_comment, comments)
+    return render_template("/comment/comment.html", comment=comment,
+                           content=mistune.markdown(comment.content),
+                           comments=comments_html)
+
+
+@app.route("/threads/<thread_id>/c", methods=["POST"])
+@login_required
+def comment_to_thread(thread_id):
+    form = CommentForm(request.form)
+    thread = Thread.query.get(thread_id)
+    if thread:
+        if form.validate():
+            comment = Comment(form.content.data, current_user, thread)
+            thread.thread_comments.append(comment)
+            db.session.commit()
+            return redirect(url_for("thread", thread_id=thread_id))
+        else:
+            return redirect(url_for("thread", thread_id=thread_id,
+                                    comment_form=form))
+
+    return render_template("threads/not_found.html")

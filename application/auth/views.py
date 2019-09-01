@@ -5,38 +5,41 @@ from application import app, db
 from application.auth.models import User
 from application.auth.forms import LoginForm, RegisterForm, ModifyUserForm
 
-@app.route("/login", methods = ["GET", "POST"])
+
+@app.route("/login", methods=["GET", "POST"])
 def auth_login():
     if request.method == "GET":
-        return render_template("auth/loginform.html", form = LoginForm())
+        return render_template("auth/loginform.html", form=LoginForm())
 
     form = LoginForm(request.form)
 
     user = User.query.filter_by(username=form.username.data,
                                 password=form.password.data).first()
     if not user:
-        return render_template("auth/loginform.html", form = form,
-                                error = "No such username or password")
+        return render_template("auth/loginform.html", form=form,
+                               error="No such username or password")
 
     login_user(user)
     return redirect(url_for("index"))
+
 
 @app.route("/logout")
 def auth_logout():
     logout_user()
     return redirect(url_for("index"))
 
-@app.route("/register", methods = ["GET", "POST"])
+
+@app.route("/register", methods=["GET", "POST"])
 def auth_register():
     if request.method == "GET":
-        return render_template("auth/registerform.html", form = RegisterForm())
+        return render_template("auth/registerform.html", form=RegisterForm())
 
     form = RegisterForm(request.form)
 
     if not form.validate():
         print(form.errors)
         print("NOT VALIDATED")
-        return render_template("auth/registerform.html", form = form)
+        return render_template("auth/registerform.html", form=form)
 
     new_user = User(form.username.data, form.password.data)
     db.session().add(new_user)
@@ -44,9 +47,10 @@ def auth_register():
     login_user(new_user)
     return redirect(url_for("index"))
 
-@app.route("/user/<uname>", methods = ["GET"])
+
+@app.route("/user/<uname>", methods=["GET"])
 def auth_userpage(uname):
-    user = User.query.filter_by(username = uname).first()
+    user = User.query.filter_by(username=uname).first()
     if not user:
         return render_template("auth/user_not_found.html")
 
@@ -55,14 +59,14 @@ def auth_userpage(uname):
     is_current_user = False
     if hasattr(current_user, 'username'):
         is_current_user = user.username == current_user.username
-    print = is_current_user
 
     return render_template("auth/userpage.html",
-        user = user,
-        is_current_user = is_current_user,
-        form = ModifyUserForm())
+                           user=user,
+                           is_current_user=is_current_user,
+                           form=ModifyUserForm())
 
-@app.route("/user/<uname>", methods = ["POST"])
+
+@app.route("/user/<uname>", methods=["POST"])
 @login_required
 def auth_modify_user(uname):
     if uname != current_user.username:
@@ -72,9 +76,9 @@ def auth_modify_user(uname):
 
     if not form.validate():
         return render_template("auth/userpage.html",
-            user = current_user,
-            is_current_user = True,
-            form = form)
+                               user=current_user,
+                               is_current_user=True,
+                               form=form)
 
     user = User.query.get(current_user.id)
     if len(form.new_username.data) > 0:

@@ -5,4 +5,49 @@
   <p class="title">{{ thread.title }}</p>
   {{ content|safe }}
 </div>
+<div class="nes-container">
+  <section class="message-list">
+    {% for comment in comments %}
+      {{ comment|safe }}
+    {% endfor %}
+  </section>
+  <div class="nes-container">
+    {% if thread.locked %}
+      <span class="nes-text"> Creator of this thread has locked the thread! </span>
+    {% elif current_user.is_authenticated %}
+        <form method="POST" action="{{ url_for('comment_to_thread', thread_id=thread.id) }}">
+          <table>
+            <tr>
+              <td>
+                <div class="nes-field is-inline">
+                  <label> {{ form.content.label }} </label>
+                  {{ form.content(class_="nes-textarea") }}
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <input class="nes-btn" type="submit" value="Comment"/>
+              </td>
+            </tr>
+          </table>
+        </form>
+    {% else %}
+      <span class="nes-text">You need to login to comment</span>
+    {% endif %}
+  </div>
+  {% if owner %}
+    <div class="nes-container">
+      <form method="POST" action="{{ url_for('lock_thread', thread_id=thread.id) }}">
+        <button type="submit" class="nes-btn is-warning">
+          {% if thread.locked %}
+            Unlock thread
+          {% else %}
+            Lock thread
+          {% endif %}
+        </button>
+      </form>
+    </div>
+  {% endif %}
+</div>
 {% endblock %}
