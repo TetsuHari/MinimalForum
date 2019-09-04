@@ -5,21 +5,14 @@ muokata kommenttejaan, tykätä muiden kommenteista etc. Käyttäjä voi myös h
 
 ### Suunniteltuja toimintoja
 
-* Kirjautuminen
-* Threadin luominen, muokkaaminen, poistaminen ja lukitseminen.
-* Kommentin lisääminen, muokkaaminen ja poistaminen
-* Käyttäjän blokkaaminen, poistaminen ja luominen
+Suunnitellut toiminnot löytyvät [täältä](docs/user_stories.md). Tehdyt on ruksattu yli.
 
 
 ### Dokumentaatio
 
 Tietokantakaavion löytää [täältä](docs/ERD_diagram.png)
-Käyttötapauksia löytyy [täältä](docs/user_stories.md)
+Ohje lokaaliin asennukseen löytyy [täältä](docs/installation_guide.md)
 
 ### Sovellus löytyy [Herokusta](https://minimalforum.herokuapp.com/)
 
-Sovellukseen on tehty yksi käyttäjä:
-Username: Hello
-Salasana: worldworldworld
-
-Voi myös rekisteröidä uuden käyttäjän menemällä /register pathiin, mihin ei vain vielä ole linkkiä sivuilla.
+Sovellukseen voi rekisteröidä käyttäjiä login valikon alta.

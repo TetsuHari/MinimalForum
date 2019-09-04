@@ -2,7 +2,12 @@
 
 {% block body %}
 <div class="nes-container with-title is-dark">
-  <p class="title">{{ thread.title }}</p>
+  <p class="title">
+    {{ thread.title }}
+    <span class="nes-text is-primary">
+      (By <a href="{url_for(){{ url_for('auth_userpage', uname = current_user.username) }}">{{ thread.author.username }}</a>) 
+    </span>
+  </p>
   {{ content|safe }}
 </div>
 <div class="nes-container">

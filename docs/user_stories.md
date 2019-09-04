@@ -2,23 +2,17 @@
 
 [x] Käyttäjänä haluan rekisteröidä itselleni tilin
 [x] Käyttäjäna haluan kirjautua tililleni
+[ ] Käyttäjänä haluan kirjautua ulos tililtäni
 [x] Käyttäjänä haluan luoda palstoja
-[ ] Käyttäjäna haluan poistaa luomiani palstoja
-[ ] Käyttäjänä haluan lukita/avata luomiani palstoja
+[x] Käyttäjänä haluan luoda kommentteja palstoihin
+[ ] Käyttäjänä haluan nähdä kenen luomia kommentit ja palstat ovat
+[ ] Käyttäjänä haluan nähdä onko kommenttia tai palstaa muokattu ja milloin
+[x] Käyttäjänä haluan lukita/avata luomiani palstoja
 [ ] Käyttäjänä haluan muokata luomiani palstoja
-* Käyttäjänä haluan kommentoida palstoihin
-* Käyttäjänä haluan kommentoida palstojen kommenteihin
-* Käyttäjänä haluan muokata itse laatimiani kommentteja
-* Käyttäjänä haluan nähdä onko kommenttia muokattu ja koska
-* Valvojana haluan muuttaa käyttäjiä valvojiksi
-* Valvojana haluan estää käyttäjiä
-* Valvojana haluan lukita palstoja
-* Valvojana haluan poistaa palstoja
-* Valvojana haluan poistaa kommentteja
-
-
-### Optional
-
-* Palstan luojana haluan lukita palstan
-* Palstan luojana haluan poistaa palstan
-* Palstan luojana haluan estää käyttäjiä kommentoimasta palstalleni
+[ ] Käyttäjänä haluan muokata luomiani kommentteja
+[ ] Käyttäjäna haluan poistaa luomiani palstoja
+[ ] Käyttäjänä haluan poistaa omia kommenttejani palstoilta
+[ ] Käyttäjänä haluan poistaa kommentteja luomiltani palstoilta
+[x] Käyttäjänä haluan vaihtaa käyttäjänimeni & salasanani
+[ ] Käyttäjänä haluan upvotee tai downvotee kommentteja
+[ ] Käyttäjänä haluan nähdä käyttäjien upvote/downvote määrät

@@ -67,11 +67,8 @@ def thread(thread_id, comment_form=None):
 
 
 def render_comment(comment):
-    comments = comment.comments
-    comments_html = map(render_comment, comments)
     return render_template("/comment/comment.html", comment=comment,
-                           content=mistune.markdown(comment.content),
-                           comments=comments_html)
+                           content=mistune.markdown(comment.content))
 
 
 @app.route("/threads/<thread_id>/c", methods=["POST"])
