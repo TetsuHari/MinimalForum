@@ -1,7 +1,14 @@
-[x] Change db.String(144) to db.Text
-[x] Add maximum length validation to forms
-[x] Check that all other validation is good
-[x] Add user page
-[x] Add crud to user
-[ ] Add thread page
-[ ] Add crud to thread
+[ ] Code review
+[x] Add base table to encapsulate common elements
+[ ] Add delete & modify thread to thread creator
+[ ] Add delete comment to thread creator
+[ ] Add delete & modify comment to comment author
+[ ] Redo ERD
+[ ] Rewrite user stories
+[ ] Add up/downvote to comment
+[ ] Add complex query to user page (showing 'karma')
+[ ] Add installation instructions & user guide
+[ ] Write rest of documentation to github wiki
+    [ ] User stories & attached sql queries
+    [ ] Database structure & attached CREATE TABLE clauses
+    [ ] Future impromevent etc.
