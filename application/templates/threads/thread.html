@@ -5,7 +5,7 @@
   <p class="title">
     {{ thread.title }}
     <span class="nes-text is-primary">
-      (By <a href="{url_for(){{ url_for('auth_userpage', uname = current_user.username) }}">{{ thread.author.username }}</a>) 
+      (By <a href="{{ url_for('auth_userpage', uname = thread.author.username) }}">{{ thread.author.username }}</a>) 
     </span>
   </p>
   {{ content|safe }}

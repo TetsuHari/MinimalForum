@@ -2,7 +2,7 @@
   <div class="nes-balloon from-left">
     {{ content|safe }}
     <span class="nes-text is-primary">
-      -<a href="{url_for(){{ url_for('auth_userpage', uname = current_user.username) }}">{{ comment.author.username }}</a>
+      -<a href="{{ url_for('auth_userpage', uname = comment.author.username) }}">{{ comment.author.username }}</a>
     </span>
   </div>
 </section>
