@@ -32,13 +32,13 @@ class User(Base):
         upvote_statement = text("SELECT COUNT(upvote.is_up) FROM upvote"
                                 " JOIN comment ON comment.id=upvote.comment_id"
                                 " JOIN account on account.id=comment.author_id"
-                                " where upvote.is_up=1"
+                                " where upvote.is_up=true"
                                 " AND account.id=:user_id"
                                 ).params(user_id=user_id)
         downvote_statement = text("SELECT COUNT(upvote.is_up) FROM upvote"
                                   " JOIN comment ON comment.id=upvote.comment_id"
                                   " JOIN account on account.id=comment.author_id"
-                                  " where upvote.is_up=0"
+                                  " where upvote.is_up=false"
                                   " AND account.id=:user_id"
                                   ).params(user_id=user_id)
         upvote_res = db.engine.execute(upvote_statement).first()[0]
