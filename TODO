@@ -6,9 +6,9 @@
 [x] Redo ERD
 [x] Rewrite user stories
 [x] Add up/downvote to comment
-[ ] Add complex query to user page (showing 'karma')
-[ ] Add installation instructions & user guide
-[ ] Write rest of documentation to github wiki
-    [ ] User stories & attached sql queries
-    [ ] Database structure & attached CREATE TABLE clauses
-    [ ] Future impromevent etc.
+[x] Add complex query to user page (showing 'karma')
+[x] Add installation instructions & user guide
+[x] Write rest of documentation
+    [x] User stories & attached sql queries
+    [x] Database structure & attached CREATE TABLE clauses
+    [x] Future impromevent etc.
