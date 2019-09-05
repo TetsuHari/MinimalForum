@@ -171,44 +171,46 @@ nykyisen käyttäjän luoma
 * Chekataan onko nykyinen käyttäjä sama mitä muutetaan
 * sql -kyselyt
   1. Jos muokataan käyttäjänimeä
-    a) Haetaan käyttäjän id
+    - Haetaan käyttäjän id
       ```
       SELECT account.id FROM account
       WHERE account.username=<username>
       ```
-    b) Päivitetään käyttäjänimi
+    - Päivitetään käyttäjänimi
       ```
       UPDATE account
       SET username=<new_username>
       WHERE account_id=<account_id>
+      ```
   2. Jos muokataan salasanaa
-    a) Haetaan käyttäjän id
+    - Haetaan käyttäjän id
       ```
       SELECT account.id FROM account
       WHERE account.username=<username>
       ```
-    b) Päivitetään salasana
+    - Päivitetään salasana
       ```
       UPDATE account
       SET password=<new_password>
       WHERE account_id=<account_id>
+      ```
   3. Jos poistetaan käyttäjä
-    a) Haetaan käyttäjän id
+    - Haetaan käyttäjän id
       ```
       SELECT account.id FROM account
       WHERE account.username=<username>
       ```
-    b) Poistetaan kaikki käyttäjän upvotet
+    - Poistetaan kaikki käyttäjän upvotet
       ```
       DELETE FROM upvote
       WHERE upvote.author_id=<account_id>
       ```
-    c) Poistetaan kaikki käyttäjän kommentit
+    - Poistetaan kaikki käyttäjän kommentit
       ```
       DELETE FROM comment
       WHERE comment.author_id=<account_id>
       ```
-    d) Poistetaan kaikki kommentit käyttäjän luomilta palstoilta
+    - Poistetaan kaikki kommentit käyttäjän luomilta palstoilta
       ```
       DELETE FROM comment
       WHERE comment.thread_id IN (
@@ -218,7 +220,7 @@ nykyisen käyttäjän luoma
         WHERE thread.author_id=<account_id>
         )
       ```
-    e) Poistetaan kaikki käyttäjän palstat
+    - Poistetaan kaikki käyttäjän palstat
       ```
       DELETE FROM thread
       WHERE thread.author_id=<account_id>
@@ -231,13 +233,13 @@ nykyisen käyttäjän luoma
   1. Tarkistetaan onko käyttäjä upvotennut aikaisemmin
   2. Tarkistetaan onko käyttäjä downvotennut aikaisemmin
   3. Tallennetaan uusi vote
-    a) Jos päivitetään aikaisempi vote
+    - Jos päivitetään aikaisempi vote
       ```
       UPDATE upvote
       SET is_up=<is_up>
       WHERE upvote.comment_id=<comment_id>, upvote.author_id=<account.id>
       ```
-    b) Jos luodaan uusi vote
+    - Jos luodaan uusi vote
       ```
       INSERT INTO upvote (comment_id, author_id, is_up)
       VALUES (<comment_id>, <author_id>, <is_up>)

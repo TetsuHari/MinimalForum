@@ -68,4 +68,4 @@ CREATE TABLE upvote (
 
 ## Tietokantakaavio
 
-![ERD DIAGRAM](docs/ERD_diagram.png Tietokantakaavio)
+![ERD DIAGRAM](ERD_diagram.png "Tietokantakaavio")
