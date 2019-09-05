@@ -1,6 +1,8 @@
 from application import db
 from application.models import Base
 
+from sqlalchemy.sql import text
+
 
 class User(Base):
 
@@ -24,3 +26,22 @@ class User(Base):
 
     def is_authenticated(self):
         return True
+
+    @staticmethod
+    def get_user_karma(user_id):
+        upvote_statement = text("SELECT COUNT(upvote.is_up) FROM upvote"
+                                " JOIN comment ON comment.id=upvote.comment_id"
+                                " JOIN account on account.id=comment.author_id"
+                                " where upvote.is_up=1"
+                                " AND account.id=:user_id"
+                                ).params(user_id=user_id)
+        downvote_statement = text("SELECT COUNT(upvote.is_up) FROM upvote"
+                                  " JOIN comment ON comment.id=upvote.comment_id"
+                                  " JOIN account on account.id=comment.author_id"
+                                  " where upvote.is_up=0"
+                                  " AND account.id=:user_id"
+                                  ).params(user_id=user_id)
+        upvote_res = db.engine.execute(upvote_statement).first()[0]
+        downvote_res = db.engine.execute(downvote_statement).first()[0]
+
+        return upvote_res - downvote_res

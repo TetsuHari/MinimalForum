@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+<form method="POST" action="{{ url_for('modify_comment', comment_id=comment_id) }}">
+  <table>
+    <tr>
+      {% if comment_form.content.errors|length > 0 %}
+      <div class="nes-balloon from-left">
+        {% for error in comment_form.content.errors %}
+        <span class="nes-text is-error"> {{ error }} </span>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <td>
+        <div class="nes-field is-inline">
+          <label> {{ comment_form.content.label }} </label>
+          {{ comment_form.content(class_="nes-textarea") }}
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input class="nes-btn" type="submit" value="Comment" />
+      </td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

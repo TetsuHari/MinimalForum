@@ -1,69 +1,72 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{% if is_current_user %}
-  <form method="POST" action="{{ url_for('auth_modify_user', uname=user.username) }}">
-    <table>
-      <tr>
-        <td>
-            {% if form.new_username.errors|length > 0 %}
-            <div class="nes-balloon from-left">
-              {% for error in form.new_username.errors %}
-              <span class="nes-text is-error"> {{ error }} </span>
-              {% endfor %}
-            </div>
-            {% endif %}
-            <div class="nes-field is-inline">
-              <label> {{ form.new_username.label }} </label>
-              {{ form.new_username(class_="nes-input") }}
-            </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          {% if form.new_password.errors|length > 0 %}
-            <div class="nes-balloon from-left">
-              {% for error in form.new_password.errors %}
-              <span class="nes-text is-error"> {{ error }} </span>
-              {% endfor %}
-            </div>
-            {% endif %}
-            <div class="nes-field is-inline">
-              <label> {{ form.new_password.label }} </label>
-              {{ form.new_password(class_="nes-input") }}
-            </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          {% if form.new_passwordc.errors|length > 0 %}
-            <div class="nes-balloon from-left">
-              {% for error in form.new_passwordc.errors %}
-              <span class="nes-text is-error"> {{ error }} </span>
-              {% endfor %}
-            </div>
-            {% endif %}
-            <div class="nes-field is-inline">
-              <label> {{ form.new_passwordc.label }} </label>
-              {{ form.new_passwordc(class_="nes-input") }}
-            </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label>
-            {{ form.delete_user(class_="nes-checkbox is-dark") }}
-            <span> {{ form.delete_user.label }} </span>
-          </label
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-  	       <input class="nes-btn" type="submit" value="Modify user"/>
-        </td>
-      </tr>
-  </form>
+{% if not is_current_user %}
+<span class="nes-text is-primary">Welcome to {{user.username}}</span>
+<br>
+<span class="nes-text">{{ user.username }} has a karma score of {{ user_karma }}</span>
 {% else %}
-  <span class="nes-text is-primary">Welcome to {{user.username}}</span>
+<span class="nes-text is-primary">Welcome to your own page</span>
+<br>
+<span class="nes-text is-primary">You have a karma score of {{ user_karma }}</span>
+<br>
+<form method="POST" action="{{ url_for('auth_modify_user', uname=user.username) }}">
+  <table>
+    <tr>
+      <td>
+        {% if form.new_username.errors|length > 0 %}
+        <div class="nes-balloon from-left">
+          {% for error in form.new_username.errors %}
+          <span class="nes-text is-error"> {{ error }} </span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="nes-field is-inline">
+          <label> {{ form.new_username.label }} </label>
+          {{ form.new_username(class_="nes-input") }}
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {% if form.new_password.errors|length > 0 %}
+        <div class="nes-balloon from-left">
+          {% for error in form.new_password.errors %}
+          <span class="nes-text is-error"> {{ error }} </span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="nes-field is-inline">
+          <label> {{ form.new_password.label }} </label>
+          {{ form.new_password(class_="nes-input") }}
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        {% if form.new_passwordc.errors|length > 0 %}
+        <div class="nes-balloon from-left">
+          {% for error in form.new_passwordc.errors %}
+          <span class="nes-text is-error"> {{ error }} </span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <div class="nes-field is-inline">
+          <label> {{ form.new_passwordc.label }} </label>
+          {{ form.new_passwordc(class_="nes-input") }}
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>
+          {{ form.delete_user(class_="nes-checkbox") }}
+          <span> {{ form.delete_user.label }} </span>
+        </label </td> </tr> <tr>
+      <td colspan="2">
+        <input class="nes-btn" type="submit" value="Modify user" />
+      </td>
+    </tr>
+</form>
 {% endif %}
 {% endblock %}

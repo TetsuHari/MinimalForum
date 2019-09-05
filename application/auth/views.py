@@ -54,7 +54,7 @@ def auth_userpage(uname):
     if not user:
         return render_template("auth/user_not_found.html")
 
-    # TODO get data about user, eg how many comments has posted
+    user_karma = User.get_user_karma(user.id)
 
     is_current_user = False
     if hasattr(current_user, 'username'):
@@ -62,6 +62,7 @@ def auth_userpage(uname):
 
     return render_template("auth/userpage.html",
                            user=user,
+                           user_karma=user_karma,
                            is_current_user=is_current_user,
                            form=ModifyUserForm())
 

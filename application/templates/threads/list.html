@@ -12,9 +12,8 @@
         </td>
         <td>
           <span class="nes-text is-primary">
-            By {{ thread.author.username }}
+            By <a href="{{ url_for('auth_userpage', uname = thread.author.username) }}">{{ thread.author.username }}</a> 
           </span>
-
         </td>
       </tr>
       {% endfor %}

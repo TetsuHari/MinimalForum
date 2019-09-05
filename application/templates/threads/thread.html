@@ -5,54 +5,71 @@
   <p class="title">
     {{ thread.title }}
     <span class="nes-text is-primary">
-      (By <a href="{{ url_for('auth_userpage', uname = thread.author.username) }}">{{ thread.author.username }}</a>) 
+      (By <a href="{{ url_for('auth_userpage', uname = thread.author.username) }}">{{ thread.author.username }}</a>)
     </span>
   </p>
   {{ content|safe }}
+  {% if owner %}
+  <a class="nes-btn is-warning" href="{{ url_for('modify_thread', thread_id=thread.id)}}">Modify first post</a>
+  <form method="POST" action="{{ url_for('delete_thread', thread_id=thread.id)}}">
+    <input type="submit" class="nes-btn is-error" value="Delete thread" />
+  </form>
+  {% endif %}
 </div>
+
+
 <div class="nes-container">
   <section class="message-list">
     {% for comment in comments %}
-      {{ comment|safe }}
+    {{ comment|safe }}
     {% endfor %}
   </section>
+
   <div class="nes-container">
     {% if thread.locked %}
-      <span class="nes-text"> Creator of this thread has locked the thread! </span>
+    <span class="nes-text"> Creator of this thread has locked the thread! </span>
     {% elif current_user.is_authenticated %}
-        <form method="POST" action="{{ url_for('comment_to_thread', thread_id=thread.id) }}">
-          <table>
-            <tr>
-              <td>
-                <div class="nes-field is-inline">
-                  <label> {{ form.content.label }} </label>
-                  {{ form.content(class_="nes-textarea") }}
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <input class="nes-btn" type="submit" value="Comment"/>
-              </td>
-            </tr>
-          </table>
-        </form>
+    <form method="POST" action="{{ url_for('thread', thread_id=thread.id) }}">
+      <table>
+        <tr>
+          {% if comment_form.content.errors|length > 0 %}
+          <div class="nes-balloon from-left">
+            {% for error in comment_form.content.errors %}
+            <span class="nes-text is-error"> {{ error }} </span>
+            {% endfor %}
+          </div>
+          {% endif %}
+          <td>
+            <div class="nes-field is-inline">
+              <label> {{ comment_form.content.label }} </label>
+              {{ comment_form.content(class_="nes-textarea") }}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input class="nes-btn" type="submit" value="Comment" />
+          </td>
+        </tr>
+      </table>
+    </form>
     {% else %}
-      <span class="nes-text">You need to login to comment</span>
+    <span class="nes-text">You need to login to comment</span>
     {% endif %}
   </div>
+
   {% if owner %}
-    <div class="nes-container">
-      <form method="POST" action="{{ url_for('lock_thread', thread_id=thread.id) }}">
-        <button type="submit" class="nes-btn is-warning">
-          {% if thread.locked %}
-            Unlock thread
-          {% else %}
-            Lock thread
-          {% endif %}
-        </button>
-      </form>
-    </div>
-  {% endif %}
+  <div class="nes-container">
+    <form method="POST" action="{{ url_for('lock_thread', thread_id=thread.id) }}">
+      <button type="submit" class="nes-btn is-warning">
+        {% if thread.locked %}
+        Unlock thread
+        {% else %}
+        Lock thread
+        {% endif %}
+      </button>
+    </form>
+  </div>
 </div>
+{% endif %}
 {% endblock %}

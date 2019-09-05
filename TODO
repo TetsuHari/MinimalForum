@@ -1,11 +1,11 @@
 [x] Code review
 [x] Add base table to encapsulate common elements
-[ ] Add delete & modify thread to thread creator
-[ ] Add delete comment to thread creator
-[ ] Add delete & modify comment to comment author
+[x] Add delete & modify thread to thread creator
+[x] Add delete comment to thread creator
+[x] Add delete & modify comment to comment author
 [x] Redo ERD
-[ ] Rewrite user stories
-[ ] Add up/downvote to comment
+[x] Rewrite user stories
+[x] Add up/downvote to comment
 [ ] Add complex query to user page (showing 'karma')
 [ ] Add installation instructions & user guide
 [ ] Write rest of documentation to github wiki
