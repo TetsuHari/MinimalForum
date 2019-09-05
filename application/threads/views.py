@@ -60,6 +60,8 @@ def thread(thread_id):
     thread = Thread.query.get(thread_id)
     if thread:
         if request.method == "POST":
+            if thread.locked:
+                return render_template("threads/unauthorized.html")
             comment_form = CommentForm(request.form)
             if comment_form.validate():
                 comment = Comment(comment_form.content.data,
@@ -190,6 +192,8 @@ def delete_thread(thread_id):
         if not is_owner:
             return render_template("threads/unauthorized.html")
         for comment in thread.thread_comments:
+            for vote in comment.upvotes:
+                db.session.delete(vote)
             db.session.delete(comment)
         db.session.delete(thread)
         db.session.commit()
@@ -208,6 +212,8 @@ def delete_comment(comment_id):
             can_delete = can_delete or check_owner(thread, current_user)
         if not can_delete:
             return render_template("threads/unauthorized.html")
+        for vote in comment.upvotes:
+            db.session.delete(vote)
         db.session.delete(comment)
         db.session.commit()
         if thread:

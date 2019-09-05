@@ -14,6 +14,15 @@
   <form method="POST" action="{{ url_for('delete_thread', thread_id=thread.id)}}">
     <input type="submit" class="nes-btn is-error" value="Delete thread" />
   </form>
+  <form method="POST" action="{{ url_for('lock_thread', thread_id=thread.id) }}">
+    <button type="submit" class="nes-btn is-warning">
+      {% if thread.locked %}
+      Unlock thread
+      {% else %}
+      Lock thread
+      {% endif %}
+    </button>
+  </form>
   {% endif %}
 </div>
 
@@ -41,7 +50,6 @@
           {% endif %}
           <td>
             <div class="nes-field is-inline">
-              <label> {{ comment_form.content.label }} </label>
               {{ comment_form.content(class_="nes-textarea") }}
             </div>
           </td>
@@ -57,19 +65,5 @@
     <span class="nes-text">You need to login to comment</span>
     {% endif %}
   </div>
-
-  {% if owner %}
-  <div class="nes-container">
-    <form method="POST" action="{{ url_for('lock_thread', thread_id=thread.id) }}">
-      <button type="submit" class="nes-btn is-warning">
-        {% if thread.locked %}
-        Unlock thread
-        {% else %}
-        Lock thread
-        {% endif %}
-      </button>
-    </form>
-  </div>
 </div>
-{% endif %}
 {% endblock %}

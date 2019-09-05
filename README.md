@@ -1,18 +1,17 @@
 # MinimalForum
 
-Tässä harjoitustyössä teen minimalistisen keskustelufoorumin. Käyttäjä voi luoda uusia threadejä, kommentoida olemassaoleviin threadeihin,
-muokata kommenttejaan, tykätä muiden kommenteista etc. Käyttäjä voi myös hakea foorumilta threadejä tai yksittäisiä kommentteja. Ylläpitäjä voi poistaa ja lukita threadejä, sekä blokata käyttäjiä. Muita mahdollsia ominaisuuksia saattaa projektin edistyessä ilmetä.
+Tämä projekti on minimalistinen keskustelufoorumi.
 
-### Suunniteltuja toimintoja
+### Toteutetut toiminnot
 
-Suunnitellut toiminnot löytyvät [täältä](docs/user_stories.md). Tehdyt on ruksattu yli.
-
+Toteutetut toiminnot löytyvät [käyttäjäkuvauksista.](docs/user_stories.md)
 
 ### Dokumentaatio
 
-Tietokantakaavion löytää [täältä](docs/ERD_diagram.png)
-Ohje lokaaliin asennukseen löytyy [täältä](docs/installation_guide.md)
+* Ohje lokaaliin asennukseen löytyy [täältä](docs/installation_guide.md)
+* Käyttöohje löytyy [täältä](docs/user_guide.md)
+* Pohdintaa työn rajoitteista ja kehitysmahdollisuuksista löytyy [täältä](docs/missing_features.md)
+* Toteutetut käyttötapaukset ja niihin liittyvät SQL kyselyt löytyvät [täältä](docs/user_stories.md)
+* Tietokantakaavion ja CREATE TABLE lauseet löytää [täältä](docs/ERD_diagram.png)
 
-### Sovellus löytyy [Herokusta](https://minimalforum.herokuapp.com/)
-
-Sovellukseen voi rekisteröidä käyttäjiä login valikon alta.
+### Sovellus löytyy myös [herokusta](https://minimalforum.herokuapp.com/)

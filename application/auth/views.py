@@ -89,6 +89,12 @@ def auth_modify_user(uname):
         user.password = form.new_password.data
 
     if form.delete_user.data:
+        for comment in user.comments_created:
+            db.session.delete(comment)
+        for thread in user.threads_created:
+            db.session.delete(thread)
+        for vote in user.votes_given:
+            db.session.delete(vote)
         db.session.delete(user)
 
     db.session.commit()

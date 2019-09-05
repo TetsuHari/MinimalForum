@@ -1,5 +1,11 @@
 ## Asennusohje
 
+Sovelluksen lokaali asennus vaatii
+* Python (min) 3.5
+* pip
+* git
+* venv
+
 1. Lataa sovellus githubista ja mene kansioon
 ```
 > git clone git@github.com:TetsuHari/MinimalForum.git

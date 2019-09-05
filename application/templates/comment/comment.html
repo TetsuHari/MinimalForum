@@ -2,12 +2,12 @@
   <div class="nes-balloon from-left">
     {{ content|safe }}
     {% if modify %}
-    <a class="nes-btn is-warning" href="{{ url_for('modify_comment', comment_id=comment.id) }}">Edit Comment</a>
+    <a class="nes-btn is-warning" href="{{ url_for('modify_comment', comment_id=comment.id) }}">Edit</a>
     <br>
     {% endif %}
     {% if delete %}
     <form method="POST" action="{{ url_for('delete_comment', comment_id=comment.id) }}">
-      <input type="submit" class="nes-btn is-error" value="Delete Comment" />
+      <input type="submit" class="nes-btn is-error" value="Delete" />
     </form>
     <br>
     {% endif %}
@@ -16,12 +16,12 @@
     </span>
     {% if can_upvote %}
     <form method="POST" action="{{ url_for('vote_comment', comment_id=comment.id, is_up='True') }}">
-      <input type="submit" class="nes-btn is-success" value="Upvote comment" />
+      <input type="submit" class="nes-btn is-success" value="Upvote" />
     </form>
     {% endif %}
     {% if can_downvote %}
     <form method="POST" action="{{ url_for('vote_comment', comment_id=comment.id, is_up='False') }}">
-      <input type="submit" class="nes-btn is-warning" value="Downvote comment" />
+      <input type="submit" class="nes-btn is-warning" value="Downvote" />
     </form>
     {% endif %}
     {{ upvotes }}
